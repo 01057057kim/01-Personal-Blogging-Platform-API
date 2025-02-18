@@ -1,0 +1,16 @@
+{
+  "name": "personal-blogging",
+  "version": "1.0.0",
+  "description": "Learning Beckend RESTful API Blogging  Blok UI <--> Blog Api <--> Database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kim",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoose": "^8.10.1",
+    "path": "^0.12.7"
+  }
+}
