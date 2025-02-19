@@ -5,7 +5,7 @@ const app = express()
 const setupMiddleware = (app) => {
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
-    app.use(express.static(path.join(__dirname, '../../public')))
+    app.use(express.static(path.join(__dirname, '../../Frontend')))
 }
 
 module.exports = setupMiddleware

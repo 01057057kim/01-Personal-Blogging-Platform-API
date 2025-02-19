@@ -8,11 +8,11 @@ router.post('/add-article', addArticle);
 router.get('/articles', getArticles);
 
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../../public/index.html'));
+    res.sendFile(path.join(__dirname, '../../../Frontend/index.html'));
 })
 
 router.get('/add-article', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../../public/add.html'));
+    res.sendFile(path.join(__dirname, '../../../Frontend/add.html'));
 })
 
 module.exports = router;
