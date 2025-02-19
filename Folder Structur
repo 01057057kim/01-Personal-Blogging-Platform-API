@@ -1,0 +1,58 @@
+# public:
+
+This folder is generally intended for static assets that can be directly accessed by the client (web browser) without needing to be processed by the back end server. Examples include images, CSS files, or client-side JavaScript that doesn’t require server-side execution.
+
+
+
+#  Backend-Specific Folders:
+
+### controllers: 
+This folder likely contains JavaScript files that handle incoming requests, interact with models and services, and prepare the data to be sent back to the client in the desired format (JSON, HTML, etc.).
+
+### db: 
+This folder might hold database-related code, such as connection logic, model definitions (using Mongoose or a similar ODM), or functions for interacting with the database.
+
+### middlewares: 
+This folder could house middleware functions that are executed before or after certain routes are processed. Middlewares can be used for tasks like authentication, authorization, logging, or request validation.
+
+### models: 
+This folder probably contains Mongoose schemas that define the structure of your data and how it maps to your database collections.
+
+### routes: 
+This folder likely contains JavaScript files that define the API endpoints for your application. These files map incoming requests (URLs, HTTP methods) to the appropriate controller functions to handle them.
+
+### utils: 
+This folder might include utility functions or helper code that can be reused across different parts of your backend application.
+
+https://medium.com/@mudassirali_79816/how-to-setup-professional-folder-structure-for-back-end-6820dcc73f08
+
+
+
+/my-fullstack-app 
+├── /frontend 
+│   ├── /public 
+│   ├── /src 
+│   │   ├── /components 
+│   │   ├── /pages 
+│   │   ├── /styles 
+│   │   ├── /services 
+│   │   └── App.js 
+│   ├── package.json 
+│   └── ... (other frontend files) 
+├── /backend 
+│   ├── /controllers 
+│   ├── /models 
+│   ├── /routes 
+│   ├── /middlewares 
+│   ├── /config 
+│   ├── server.js (or app.js) 
+│   ├── package.json 
+│   └── ... (other backend files) 
+├── /scripts 
+├── /tests 
+└── README.md 
+
+https://www.quora.com/How-do-you-put-backend-and-frontend-development-in-the-same-project-How-do-you-structure-the-folder
+
+
+
