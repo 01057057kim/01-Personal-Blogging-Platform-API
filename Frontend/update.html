@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Blog Post</title>
+    <link rel="stylesheet" href="updateStyles.css">
+</head>
+<body>
+    <header>
+        <button id="back">Back</button>
+        <h1>Update Blog Post</h1>
+    </header>
+    <main>
+        <section id="update-article">
+
+        </section>
+    </main>
+</body>
+<script>
+    document.getElementById('back').addEventListener('click', function(){
+        window.location.href = '/index.html';
+        console.log('back')
+    })
+
+    async function getArticles(){
+        try{
+            const response = await fetch('/articles');
+            const articles = await response.json();
+            const postsSection = document.getElementById('update-article');
+
+            articles.forEach(function(article){
+                const articleElement = document.createElement('article');
+                articleElement.innerHTML = `
+                    <textarea class="a" id="title-${article._id}">${article.title}</textarea>
+                    <textarea class="b" id="author-${article._id}">${article.author}</textarea>
+                    <textarea class="c" id="content-${article._id}">${article.content}</textarea>
+                    <button class="update_button" onclick="updatePost('${article._id}')">Update</button>
+                `;
+                postsSection.appendChild(articleElement);
+            });
+        }catch (error){
+            console.error('Error:', error);
+        }
+    }
+
+    async function updatePost(id){
+        try{
+            const title = document.getElementById(`title-${id}`).value;
+            const author = document.getElementById(`author-${id}`).value;
+            const content = document.getElementById(`content-${id}`).value;
+
+            const response = await fetch('/update-article', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id, title, author, content })
+            });
+            const result = await response.json();
+            if (result.success) {
+                alert('Post updated successfully!');
+                location.reload();
+            }else {
+                alert('Failed to update post');
+            }
+        }catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    window.onload = getArticles;
+</script>
+</html>

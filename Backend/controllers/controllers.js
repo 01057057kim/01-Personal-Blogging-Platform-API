@@ -7,7 +7,6 @@ const addArticle = async (req, res) => {
         console.log('Article Added');
     } catch(err) {
         console.log(err);
-        res.status(500).json({ success: false, message: "An error occurred." });
     }
 }
 
@@ -17,8 +16,28 @@ const getArticles = async (req, res) => {
         res.json(articles);
     } catch(err) {
         console.log(err);
-        res.status(500).json({ success: false, message: "An error occurred." });
     }
 }
 
-module.exports = { addArticle, getArticles }
+const deleteArticle = async (req, res) => {
+    try {
+        await Article.findByIdAndDelete(req.body.id);
+        console.log('Article Deleted');
+    } catch(err){
+        console.log(err);
+    }
+}
+
+const updateArticle = async (req, res) => {
+    try{
+        const { id, title, content, author } = req.body;
+        await Article.findByIdAndUpdate(id, { title, content, author });
+        console.log('Article Updated');
+    }catch(err){
+        console.log(err);
+    }
+}
+
+
+
+module.exports = { addArticle, getArticles, deleteArticle, updateArticle }

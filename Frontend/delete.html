@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Post</title>
+    <!--<link rel="stylesheet" href="deleteStyles.css">-->
+</head>
+<body>
+    <header>
+        <button id="back">Back</button>
+        <h1>Delete Post</h1>
+    </header>
+    <main> 
+        <section id="delete-article">
+        </section>
+    </main>
+</body>
+<script>
+    document.getElementById('back').addEventListener('click', function(){
+        window.location.href = '/index.html';
+    })
+
+    async function getArticles() {
+        try{
+        const response = await fetch('/articles');
+        const articles = await response.json();
+        const postsSection = document.getElementById('delete-article');
+
+        articles.forEach(function(article) {
+            const articleElement = document.createElement('article');
+            articleElement.innerHTML = `
+                <h3>${article.title}</h3>
+                <h1>${article.author}</h1>
+                <p>${article.content}</p>
+                <button class="delete_button" onclick="deletePost('${article._id}')">Delete</button>
+            `;
+            postsSection.appendChild(articleElement);
+        });
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    async function deletePost(id){
+        try{
+            const response = await fetch('/delete-article', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id })
+            });
+            const result = await response.json();
+            if (result.success) {
+                alert('Post deleted successfully!');
+                location.reload();
+            }else {
+                alert('Failed to delete post');
+            }
+        }catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    window.onload = getArticles;
+</script>
+</html>
